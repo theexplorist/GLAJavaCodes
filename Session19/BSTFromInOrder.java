@@ -65,4 +65,82 @@ public class BSTFromInOrder {
 		display(root.left);
 		display(root.right);
 	}
+
+	public int max() {
+		return this.max(root);
+	}
+
+	private int max(Node root) {
+
+		if (root.right == null) {
+			return root.val;
+		}
+		return max(root.right);
+	}
+
+	public boolean find(int value) {
+		return this.find(root, value);
+	}
+
+	private boolean find(Node root, int value) {
+		// TODO Auto-generated method stub
+
+		if (root == null) {
+			return false;
+		}
+		if (value < root.val) {
+			return this.find(root.left, value);
+		} else if (value > root.val) {
+			return this.find(root.right, value);
+		} else {
+			return true;
+		}
+	}
+
+	int sum = 0;
+
+	public void replaceWithLarger() {
+		replaceWithLarger(this.root);
+	}
+
+	private void replaceWithLarger(Node root) {
+		// TODO Auto-generated method stub
+
+		if (root == null) {
+			return;
+		}
+		// right
+		replaceWithLarger(root.right);
+		// self
+		int temp = root.val;
+		root.val = sum;
+		sum = sum + temp;
+		// left
+		replaceWithLarger(root.left);
+
+	}
+
+	public void printInRange(int low, int high) {
+		// TODO Auto-generated method stub
+		printInRange(this.root, low, high);
+	}
+
+	private void printInRange(Node root, int low, int high) {
+		// TODO Auto-generated method stub
+
+		if (root == null) {
+			return;
+		}
+		if (root.val < low) {
+			printInRange(root.right, low, high);
+		} else if (root.val > high) {
+			printInRange(root.left, low, high);
+		} else { // in or on range
+			
+			printInRange(root.left, low, high);
+			System.out.println(root.val);
+			printInRange(root.right, low, high);
+		}
+	}
+
 }

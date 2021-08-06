@@ -10,6 +10,11 @@ public class BSTClient {
 		BSTFromInOrder bst = new BSTFromInOrder(in);
 		
 		bst.display();
+		
+		System.out.println("***********************");
+		//bst.replaceWithLarger();
+		bst.printInRange(25, 50);//inclusive
+		//bst.display();
 	}
 
 }
